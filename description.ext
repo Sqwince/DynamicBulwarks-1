@@ -168,7 +168,15 @@ class Params
 		texts[] = {"0", "15 Seconds", "30 Seconds", "1 Minute", "1 Minute 30 Seconds", "2 Minutes", "3 Minutes", "4 Minutes", "5 Minutes"};
 		default = 30;
 	};
-
+	
+	class PAUSE_WAVE_COUNTER
+	{
+		title = "Pause Mission every X number waves";
+		values[] = {0, 1, 2, 5, 10};
+		texts[] = {"Disabled", "1", "2", "5", "10"};
+		default = 5;
+	}
+	
 	class BULWARK_MEDIKIT
 	{
 		title = "Medikits in Bulwark";

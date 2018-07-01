@@ -8,6 +8,12 @@ publicVariable "attkWave";
 activeLoot = [];
 //mrkrs = [];
 
+pauseWave = false;
+WAVE_PAUSED = false;
+
+publicVariable "pauseWave";
+publicVariable "WAVE_PAUSED";
+
 waveUnits = [[],[],[]];
 revivedPlayers = [];
 
@@ -141,5 +147,35 @@ while {runMissionLoop} do {
 		};
 	} foreach allPlayers;
 
+	
+	//Pause mission loop every X waves
+		if (attkWave%PAUSE_WAVE_COUNT == 0 && PAUSE_WAVE_COUNT != 0) then {
+			//Pause mission loop 
+			WAVE_PAUSED = true;
+					
+			//notification to players
+			["<t size = '.8'>Hostile Waves Paused.</t>",0, 0.1, 3, 0] remoteExec ["BIS_fnc_dynamicText", 0];
+			//add menu item to bulwark
+			[bulwarkBox, ["<t color='#9e2403'>" + "Resume Waves.","bulwark\resumeWave.sqf" ,"",3,false,true,"true","true",2.5]] remoteExec ["addAction", 0, true];
+		};
+		
+		while {WAVE_PAUSED} do {
+		
+			{
+			// Try to force the spectator mode off when players are revived.
+				["Terminate"] remoteExec ["BIS_fnc_EGSpectator", _x];
+
+				// Revive players that died during the pause wave.
+				if ((lifeState _x == "DEAD") || (lifeState _x == "INCAPACITATED")) then {
+				forceRespawn _x;
+				};		
+				} foreach allPlayers;	
+				sleep 5;
+			};	
+		
+	//only apply downtime on regular waves	
+	if (attkWave%PAUSE_WAVE_COUNT != 0) then {
 	sleep _downTime;
+	};
+
 };
