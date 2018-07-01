@@ -23,6 +23,7 @@ publicVariable "PLAYER_STARTMAP";
 publicVariable "PLAYER_STARTNVG";
 publicVariable "PISTOL_HOSTILES";
 publicVariable "DOWN_TIME";
+publicVariable "PAUSE_WAVE_COUNT";
 
 _dayTimeHours = DAY_TIME_TO - DAY_TIME_FROM;
 _randTime = floor random _dayTimeHours;

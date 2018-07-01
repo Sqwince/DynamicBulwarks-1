@@ -94,3 +94,6 @@ if (DAY_TIME_FROM > DAY_TIME_TO) then {
 
 /* Starter MediKits */
 BULWARK_MEDIKITS = ("BULWARK_MEDIKIT" call BIS_fnc_getParamValue);
+
+/* Pause Wave increment */
+PAUSE_WAVE_COUNT = ("PAUSE_WAVE_COUNTER" call BIS_fnc_getParamValue);
