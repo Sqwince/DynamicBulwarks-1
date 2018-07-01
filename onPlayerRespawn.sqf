@@ -22,6 +22,6 @@ if(PLAYER_STARTMAP) then {
 };
 
 if(PLAYER_STARTNVG) then {
-    _player addItem "Integrated_NVG_F";
-    _player assignItem "Integrated_NVG_F";
+    _player addItem "NVGoggles";
+    _player assignItem "NVGoggles";
 };
